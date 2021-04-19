@@ -1,39 +1,36 @@
 {
 	"name": "quiniela-app",
-	"version": "0.1.0",
-	"private": true,
-	"dependencies": {
-		"@testing-library/jest-dom": "^5.11.10",
-		"@testing-library/react": "^11.2.6",
-		"@testing-library/user-event": "^12.8.3",
-		"react": "^17.0.2",
-		"react-dom": "^17.0.2",
-		"react-scripts": "4.0.3",
-		"web-vitals": "^1.1.1",
-		"wouter": "^2.7.4"
+	"version": "1.0.0",
+	"description": "Proyecto 2 del curso de Manejo e Implementación de Archivos.",
+	"main": "index.js",
+	"directories": {
+		"doc": "docs"
+	},
+	"watch": {
+		"test-e2e": {
+			"patterns": [
+				".",
+				"api-spec"
+			],
+			"extensions": "js, feature, go",
+			"quite": true
+		}
 	},
 	"scripts": {
-		"dev": "react-scripts start",
-		"build": "react-scripts build",
-		"test": "react-scripts test",
-		"eject": "react-scripts eject"
+		"start": "gin --notifications --bin taskpad -a 8080 -i run *.go"
 	},
-	"eslintConfig": {
-		"extends": [
-			"react-app",
-			"react-app/jest"
-		]
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/PabloC54/-MIA-Proyecto-2.git"
 	},
-	"browserslist": {
-		"production": [
-			">0.2%",
-			"not dead",
-			"not op_mini all"
-		],
-		"development": [
-			"last 1 chrome version",
-			"last 1 firefox version",
-			"last 1 safari version"
-		]
-	}
+  "keywords": [
+    "golang",
+    "reactjs"
+  ],
+	"author": "pablofernando50259107@gmail.com",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/PabloC54/-MIA-Proyecto-2/issues"
+	},
+	"homepage": "https://github.com/PabloC54/-MIA-Proyecto-2#readme"
 }
