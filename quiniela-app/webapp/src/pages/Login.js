@@ -2,25 +2,38 @@ import { useState, useContext } from 'react'
 import { useLocation } from 'wouter'
 import { Link } from 'wouter'
 import { Button, Form } from 'react-bootstrap'
-import NotificationContext from '../context/NotificationContext'
-import UserContext from '../context/UserContext'
+import NotificationContext from 'context/NotificationContext'
+import UserContext from 'context/UserContext'
 
-const Login = () => {
+import { loginUser } from 'services/userServices'
+
+export default function Login() {
   const [username, setUsername] = useState('')
-  const [password, setPassword] = useState('')
+  const [contraseña, setContraseña] = useState('')
   const { setNotification } = useContext(NotificationContext)
-  const { setUserLogged } = useContext(UserContext)
-  const [location, setLocation] = useLocation()
+  const { doLogin } = useContext(UserContext)
+  const [, setLocation] = useLocation()
 
   const handleUsername = (ev) => setUsername(ev.target.value)
-  const handlePassword = (ev) => setPassword(ev.target.value)
+  const handlePassword = (ev) => setContraseña(ev.target.value)
 
   const handleLogin = (ev) => {
     ev.preventDefault()
-    // login, validar en db
-    setUserLogged(username)
-    setNotification('titulo', 'mensaje', 'info')
-    setLocation(username === 'admin' ? '/admin' : '/')
+
+    if (!username || !contraseña) return setNotification('Error en el login', 'Rellena todo el formulario', 'danger')
+
+    loginUser({ username, contraseña }).then((res) => {
+      const { logged, message } = res
+
+      if (!logged) {
+        setContraseña('')
+        return setNotification('Error en el login', message, 'danger')
+      }
+
+      doLogin(username)
+      setNotification('Bienvenido', '', 'success')
+      setLocation(username === 'admin' ? '/admin' : '/')
+    })
   }
 
   return (
@@ -31,9 +44,9 @@ const Login = () => {
           <Form.Label>Nombre de usuario</Form.Label>
           <Form.Control type='text' placeholder='Ingrese su nombre de usuario' value={username} onChange={handleUsername} />
         </Form.Group>
-        <Form.Group controlId='password'>
+        <Form.Group controlId='contraseña'>
           <Form.Label>Contraseña</Form.Label>
-          <Form.Control type='password' placeholder='Ingrese su contraseña' value={password} onChange={handlePassword} />
+          <Form.Control type='contraseña' placeholder='Ingrese su contraseña' value={contraseña} onChange={handlePassword} />
         </Form.Group>
         <Button type='submit' variant='primary' onClick={handleLogin}>
           Iniciar sesión
@@ -43,5 +56,3 @@ const Login = () => {
     </>
   )
 }
-
-export default Login

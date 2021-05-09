@@ -1,7 +1,7 @@
 import { useContext } from 'react'
 import { Link, useLocation } from 'wouter'
 import { Navbar, Nav, Button } from 'react-bootstrap'
-import UserContext from '../context/UserContext'
+import UserContext from 'context/UserContext'
 
 const admin_links = [
   {
@@ -68,9 +68,9 @@ const logged_links = [
   }
 ]
 
-const Header = () => {
-  const { logged, user, setUserLogged } = useContext(UserContext)
-  const [location, setLocation] = useLocation()
+export default function Header() {
+  const { logged, user, doLogout } = useContext(UserContext)
+  const [, setLocation] = useLocation()
 
   const handleLinks = (array) =>
     array.map((link) => {
@@ -82,7 +82,7 @@ const Header = () => {
     })
 
   const handleLogout = () => {
-    setUserLogged('')
+    doLogout()
     setLocation('/')
   }
 
@@ -97,12 +97,14 @@ const Header = () => {
           {handleLinks(logged ? (user === 'admin' ? admin_links : logged_links) : unlogged_links)}
           {logged ? (
             <>
-              <Link to='/perfil'>
-                <Nav.Link>{user}</Nav.Link>
-              </Link>
-              <Button variant='danger' onClick={handleLogout}>
-                Cerrar sesión
-              </Button>
+              <Navbar.Collapse className='justify-content-end'>
+                <Link to='/perfil'>
+                  <Nav.Link>{user}</Nav.Link>
+                </Link>
+                <Button variant='danger' onClick={handleLogout}>
+                  Cerrar sesión
+                </Button>
+              </Navbar.Collapse>
             </>
           ) : (
             <>
@@ -119,5 +121,3 @@ const Header = () => {
     </Navbar>
   )
 }
-
-export default Header

@@ -1,0 +1,138 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat:ital,wght@0,300;0,400;1,300;1,400&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Krona+One&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@500&display=swap');
+
+body {
+  margin: 0;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  background: linear-gradient(120deg, #25222b, #242133, #28273f, #332753);
+}
+
+nav.navbar.bg-dark,
+.footer {
+  background-color: #252525 !important;
+}
+
+.navbar-brand {
+  font-family: 'Krona One', sans-serif;
+}
+
+h1 {
+  color: #78e6b8;
+  font-family: 'Montserrat', sans-serif;
+  font-weight: 400;
+}
+
+div.container {
+  margin-bottom: -50px;
+  min-height: 84vh;
+  padding: 50px 20px;
+  color: #a5cab2;
+}
+
+.membership {
+  color: black;
+  padding: 20px 40px;
+  margin: 5px 0;
+}
+
+.m-bronze {
+  background: linear-gradient(-45deg, #c75723, #c5af4d, #8ece87, #e4a0d7);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+}
+
+.m-silver {
+  background: linear-gradient(-45deg, #aac2b6, #9bbdb3, #8ece87, #e4a0d7);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+}
+
+.m-gold {
+  background: linear-gradient(-45deg, #fcff36, #b3c952, #8ece87, #e4a0d7);
+  background-size: 400% 400%;
+  animation: gradient 30s ease infinite;
+}
+
+.membership .pricing {
+  text-align: center;
+  font-weight: 500;
+  text-shadow: #2525258e 7spx 3px;
+}
+
+.membership .pricing button {
+  cursor: pointer;
+  border: none;
+  background-color: #64cfb4;
+  width: 90px;
+  height: 40px;
+  border-radius: 15px;
+  font-weight: 600;
+  color: #1a1f1a;
+}
+
+.membership .pricing button:hover {
+  background-color: #8cc0b3;
+}
+
+.membership .pricing button:active {
+  font-size: 14px;
+}
+
+@keyframes gradient {
+  0% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+.footer {
+  width: 100vw;
+  line-height: 50px;
+  background-color: rgb(56, 59, 73);
+  color: white;
+  text-align: center;
+}
+.footer,
+.push {
+  height: 50px;
+}
+
+div.custom-prompt {
+  background-color: #3535359a;
+}
+
+div.custom-prompt div {
+  background-color: #1b1b1be1;
+  color: rgb(212, 212, 212);
+  border-radius: 10px;
+}
+
+div.custom-prompt .react-confirm-alert {
+  box-shadow: 3px 3px black;
+}
+
+.not-found {
+  text-align: center;
+}
+
+.not-found div {
+  line-height: 3em;
+}
+
+.not-found h1 {
+  font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+  font-size: 140px;
+  font-weight: 800;
+}
+
+.credits {
+  font-family: 'Noto Sans JP', sans-serif;
+  color: thistle;
+}

@@ -1,5 +1,3 @@
-const Chat = () => {
-	return <h1>CHAT</h1>;
-};
-
-export default Chat;
+export default function Chat() {
+  return <h1>CHAT</h1>
+}

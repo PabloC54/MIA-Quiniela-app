@@ -1,5 +1,5 @@
 {
-	"name": "quiniela-app-ui",
+	"name": "quiniela-app-webapp",
 	"version": "0.1.0",
 	"private": true,
 	"dependencies": {
@@ -9,13 +9,14 @@
 		"bootstrap": "^4.6.0",
 		"react": "^17.0.2",
 		"react-bootstrap": "^1.5.2",
+		"react-confirm-alert": "^2.7.0",
 		"react-dom": "^17.0.2",
 		"react-scripts": "4.0.3",
 		"web-vitals": "^1.1.1",
 		"wouter": "^2.7.4"
 	},
 	"scripts": {
-		"dev": "PORT=3001 react-scripts start",
+		"dev": "react-scripts start",
 		"prebuild": "rimraf ../ui-dist",
 		"build": "react-scripts build",
 		"postbuild": "mv ./build ../ui-dist",
@@ -39,6 +40,5 @@
 			"last 1 firefox version",
 			"last 1 safari version"
 		]
-	},
-	"proxy": "http://localhost:8080"
+	}
 }

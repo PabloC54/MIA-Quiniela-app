@@ -13,6 +13,7 @@ export function NotificationContextProvider({ children }) {
     setMessage(message)
     setVariant(variant)
     setVisible(true)
+    window.scrollTo(0, 0)
   }
 
   return (

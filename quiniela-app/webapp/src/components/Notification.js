@@ -1,6 +1,6 @@
 import { useContext } from 'react'
 import { Alert } from 'react-bootstrap'
-import NotificationContext from '../context/NotificationContext'
+import NotificationContext from 'context/NotificationContext'
 
 const Notification = () => {
   const { title, message, variant, visible, setVisible } = useContext(NotificationContext)
@@ -10,8 +10,8 @@ const Notification = () => {
 
   return visible ? (
     <Alert variant={variant} onClose={handleClose} dismissible>
-      <Alert.Heading>{title}</Alert.Heading>
-      <p onChange={handleChange}>{message}</p>
+      {title && <Alert.Heading>{title}</Alert.Heading>}
+      {message && <p onChange={handleChange}>{message}</p>}
     </Alert>
   ) : (
     <></>
