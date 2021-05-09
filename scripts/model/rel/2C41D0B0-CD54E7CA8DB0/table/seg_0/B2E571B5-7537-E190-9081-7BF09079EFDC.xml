@@ -1,0 +1,141 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="B2E571B5-7537-E190-9081-7BF09079EFDC" name="Estado_usuario">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 01:45:57 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id_usuario" id="B6941A2B-2A62-3BCE-0533-88FAC49B09AE">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:19:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="AE313CDD-F72C-05E4-2670-B672E43CE69D" referredColumn="BA9368AB-ED3F-6204-4F89-A7E223EC641D"/>
+</associations>
+</Column>
+<Column name="id_membresia" id="96023BE8-3F02-4B44-5075-2FD5B86EC4A3">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:20:21 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="DEEAE542-D6E9-6CB1-6A12-5B667798E218" referredColumn="3FF37FDE-57BA-0AA6-52B0-CCBE5DA5B862"/>
+</associations>
+</Column>
+<Column name="nombre" id="44FD28AC-ECC4-1FFE-7B26-C75256AAFE66">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:55:17 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="apellido" id="7845D751-1D03-BC9B-6D1E-58678FFBFB66">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:55:17 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="contraseña" id="C80A7B32-B348-AA7F-B35D-0B47AC3AB582">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:55:17 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>30 BYTE</dataTypeSize>
+<ownDataTypeParameters>30 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="saldo" id="D765EFF1-D838-12BA-46ED-8E888E5E8894">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:55:17 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_nacimiento" id="B0785AE1-13FE-E3E7-64E1-51A4F06524F8">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:55:17 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_registro" id="45678408-A292-6A14-1E9D-6B28781C3B70">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:55:17 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado" id="87461BD5-BD83-F5C6-841F-6C2E8BE66D4D">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:55:17 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 BYTE</dataTypeSize>
+<ownDataTypeParameters>15 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="05C84D6B-E5A3-857F-D476-1F12A9AD0CC2" name="Estado_usuario_Usuario_FK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:19:19 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="B6941A2B-2A62-3BCE-0533-88FAC49B09AE"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="D74F6EF2-CBA6-A077-F085-3A5CD050FC32" name="Estado_usuario_Membresía_FK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:20:33 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="96023BE8-3F02-4B44-5075-2FD5B86EC4A3"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

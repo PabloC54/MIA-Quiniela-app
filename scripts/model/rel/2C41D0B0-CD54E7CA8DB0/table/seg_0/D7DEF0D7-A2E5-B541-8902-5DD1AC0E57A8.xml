@@ -1,0 +1,138 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="D7DEF0D7-A2E5-B541-8902-5DD1AC0E57A8" name="Evento">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="4537E5CC-3CC6-A72B-2691-515781D7B5E4">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_jornada" id="FD1217CF-0B70-82E1-7E60-358E7E8C2CAF">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="397BBF6A-DBF4-2C2A-8DCC-DEDD687F312D" referredColumn="75AD88CA-419B-F062-FA4B-67E3C6D89F96"/>
+</associations>
+</Column>
+<Column name="id_equipo_local" id="F0216301-ED9F-1EB7-A350-7DDAD7F9143A">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="4DB27A3F-E940-4D38-5FE4-71970FFC150F" referredColumn="676B50C9-BF5F-7DEC-F7F9-337707685D57"/>
+</associations>
+</Column>
+<Column name="id_equipo_visitante" id="6178C308-B4A6-5DA4-3705-8D03509AA36E">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="C42F18D1-3338-FD30-555F-D29CA28B36FE" referredColumn="676B50C9-BF5F-7DEC-F7F9-337707685D57"/>
+</associations>
+</Column>
+<Column name="puntuacion_local" id="9DE6BF1D-52B1-4165-5008-4D6FFD390561">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:39:28 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="puntuacion_visitante" id="F2E81585-C513-D24F-8B1A-CB3589208973">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:39:28 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado" id="150E872D-42A9-B72A-8BBC-496B727B80BB">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:39:28 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 BYTE</dataTypeSize>
+<ownDataTypeParameters>15 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="07FA2171-3FE0-080A-5C95-1083DC241919" name="Evento_PK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="4537E5CC-3CC6-A72B-2691-515781D7B5E4"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="C56F914E-3C67-7E93-B115-ABA77EB10ED4" name="Evento_Jornada_FK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FD1217CF-0B70-82E1-7E60-358E7E8C2CAF"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="FB210605-3C4F-C77F-A0DD-A5EE8A383894" name="Evento_Equipo_FK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="F0216301-ED9F-1EB7-A350-7DDAD7F9143A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="A0A72998-8E0C-D4CE-C5CB-6E530CCDFA4C" name="Evento_Equipo_FKv2">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:00:09 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="6178C308-B4A6-5DA4-3705-8D03509AA36E"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

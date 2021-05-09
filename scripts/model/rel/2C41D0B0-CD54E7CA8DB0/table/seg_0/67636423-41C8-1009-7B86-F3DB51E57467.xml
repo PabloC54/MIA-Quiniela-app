@@ -1,0 +1,93 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="67636423-41C8-1009-7B86-F3DB51E57467" name="Mensaje">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 01:36:48 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="FC47A868-CD1A-1767-10A8-9CC16C68AD6A">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 01:36:48 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_chat" id="93AA6985-3C75-B263-99B2-F647050718C2">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:32:37 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FDDE0852-9B81-D410-CE1E-583F841F8C17" referredColumn="09CA6C01-449B-9238-581E-8311B2630336"/>
+</associations>
+</Column>
+<Column name="emisor" id="90B5CF5D-0943-0FFB-E077-EB52C1022CE3">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:44:52 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT006</logicalDatatype>
+<dataTypeSize>1</dataTypeSize>
+<ownDataTypeParameters>1,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="contenido" id="0E7E2C7E-36CD-E7D2-E48B-6E2A825E635C">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:44:52 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>300 BYTE</dataTypeSize>
+<ownDataTypeParameters>300 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_envio" id="A32C3418-6DED-0734-76F8-CE1503D6C9D4">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:44:52 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="CCEB144A-BFD3-86CE-4940-5BE985968B66" name="Mensaje_PK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 01:36:48 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="FC47A868-CD1A-1767-10A8-9CC16C68AD6A"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="92772081-D4AF-E3A0-B1E8-372DC339BF82" name="Mensaje_Chat_FK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:32:37 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="93AA6985-3C75-B263-99B2-F647050718C2"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>

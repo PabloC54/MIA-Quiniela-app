@@ -1,0 +1,92 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<Table class="oracle.dbtools.crest.model.design.relational.Table" directorySegmentName="seg_0" id="EB8F1D51-CE02-669D-67B6-01422689E49D" name="Jornada">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 01:36:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<ordsAlias>table_1</ordsAlias>
+<allowColumnReorder>false</allowColumnReorder>
+<existDependencyGenerateInDDl>true</existDependencyGenerateInDDl>
+<parsed>true</parsed>
+<columns itemClass="oracle.dbtools.crest.model.design.relational.Column">
+<Column name="id" id="75AD88CA-419B-F062-FA4B-67E3C6D89F96">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 01:36:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="id_temporada" id="A5B1E4D4-0087-3E9C-AFE2-9F9C8B840C34">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:06:59 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT019</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+<associations>
+<colAssociation fkAssociation="FDA587ED-D911-CB52-207E-B08AA2BE347B" referredColumn="EF3629CD-35C0-F1FE-34F9-6AAE74799FDC"/>
+</associations>
+</Column>
+<Column name="fecha_inicio" id="3C055D7E-B2F5-2411-F9B2-FC0BC848C809">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:40:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="fecha_final" id="B5300F40-0C4C-D55E-5BE7-5D2B3B2BB09B">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:40:15 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT007</logicalDatatype>
+<ownDataTypeParameters>,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+<Column name="estado" id="87C94D83-D65E-1EFD-A09B-68C450C0B5EE">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:40:40 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<nullsAllowed>true</nullsAllowed>
+<useDomainConstraints>false</useDomainConstraints>
+<use>1</use>
+<logicalDatatype>LOGDT024</logicalDatatype>
+<dataTypeSize>15 BYTE</dataTypeSize>
+<ownDataTypeParameters>15 BYTE,,</ownDataTypeParameters>
+<autoIncrementCycle>false</autoIncrementCycle>
+</Column>
+</columns>
+<indexes itemClass="oracle.dbtools.crest.model.design.relational.Index">
+<ind_PK_UK id="18B85067-4CF0-8E3A-BB4B-B3832C04A0DC" name="Jornada_PK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 01:36:53 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<pk>true</pk>
+<indexState>Primary Constraint</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="75AD88CA-419B-F062-FA4B-67E3C6D89F96"/>
+</indexColumnUsage>
+</ind_PK_UK>
+<ind_PK_UK id="86A156FA-E29C-2D14-DE9C-C437B0D98BAA" name="Jornada_Temporada_FK">
+<createdBy>pablo</createdBy>
+<createdTime>2021-04-20 02:06:59 UTC</createdTime>
+<ownerDesignName>model</ownerDesignName>
+<indexState>Foreign Key</indexState>
+<isSurrogateKey>false</isSurrogateKey>
+<indexColumnUsage>
+<colUsage columnID="A5B1E4D4-0087-3E9C-AFE2-9F9C8B840C34"/>
+</indexColumnUsage>
+</ind_PK_UK>
+</indexes>
+</Table>
