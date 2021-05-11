@@ -24,16 +24,17 @@ const Profile = () => {
   const handleApellido = (ev) => setApellido(ev.target.value)
   const handleContraseña = (ev) => setContraseña(ev.target.value)
   const handleConfirmarContraseña = (ev) => setConfirmarContraseña(ev.target.value)
-  const handleFoto = (ev) => setFoto(urlCreator.createObjectURL(ev.target.value))
+  const handleFoto = (ev) => setFoto(urlCreator.createObjectURL(new Blob(ev.target.value, { type: 'image/png' })))
 
   useEffect(function () {
     getUser(user).then((res) => {
       const { correo, nombre, apellido, fecha_nacimiento, foto } = res
+      console.log(foto)
       setCorreo(correo)
       setNombre(nombre)
       setApellido(apellido)
       setFechaNacimiento(fecha_nacimiento)
-      setFoto(urlCreator.createObjectURL(foto))
+      setFoto(foto? urlCreator.createObjectURL(new Blob(foto, { type: 'image/png' })):"")
     })
   }, [])
 

@@ -39,6 +39,12 @@ const Register = () => {
       return setNotification('Error en el registro', 'Las contraseñas no coinciden', 'danger')
     }
 
+    if (!/(?=.*[a-z])(?=.*[A-Z])(?=.*\d)[a-zA-Z\d]{8,}/.test(contraseña)) {
+      setContraseña('')
+      setConfirmarContraseña('')
+      return setNotification('Error en el registro', 'La contraseña debe tener 8 caracterees, una letra minúscula, una mayúscula y un número', 'danger')
+    }
+
     registerUser({
       username,
       correo,

@@ -5,7 +5,7 @@ export default function Main() {
     <p>
       <h1>¡Bienvenido a Quiniela APP!</h1>
       <h5>
-        <Link to='/registrar'>Regístrate</Link> en Quiniela App para empezar a predecir partidos
+        <Link to='/registro'>Regístrate</Link> en Quiniela App para empezar a predecir partidos
       </h5>
       <h6>
         ... o también <Link to='/login'>inicia sesión</Link>

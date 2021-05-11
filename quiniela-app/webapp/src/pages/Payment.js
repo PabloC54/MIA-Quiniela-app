@@ -38,6 +38,7 @@ export default function Payment() {
       const { membresia } = res
       setActiveMembership(membresia)
     })
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleContractMembership = (type) => {
@@ -66,12 +67,18 @@ export default function Payment() {
         {
           label: 'Sí',
           onClick: () => {
-            setActiveMembership('Ninguna')
-            setNotification(
-              'Suscripción cancelada',
-              'Suscripción cancelada con éxito\nLos cambios se verán reflejados en la próxima temporada',
-              'info'
-            )
+            setMembership(user, 'null').then((res) => {
+              const { changed, message } = res
+
+              if (!changed) return setNotification('Error al cancelar', message, 'danger')
+
+              setActiveMembership('Ninguna')
+              setNotification(
+                'Suscripción cancelada',
+                'Suscripción cancelada con éxito\nLos cambios se verán reflejados en la próxima temporada',
+                'info'
+              )
+            })
           }
         },
         {

@@ -14,6 +14,7 @@ export function NotificationContextProvider({ children }) {
     setVariant(variant)
     setVisible(true)
     window.scrollTo(0, 0)
+    setTimeout(() => setVisible(false), 6000)
   }
 
   return (

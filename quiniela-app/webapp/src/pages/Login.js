@@ -46,7 +46,7 @@ export default function Login() {
         </Form.Group>
         <Form.Group controlId='contraseña'>
           <Form.Label>Contraseña</Form.Label>
-          <Form.Control type='contraseña' placeholder='Ingrese su contraseña' value={contraseña} onChange={handlePassword} />
+          <Form.Control type='password' placeholder='Ingrese su contraseña' value={contraseña} onChange={handlePassword} />
         </Form.Group>
         <Button type='submit' variant='primary' onClick={handleLogin}>
           Iniciar sesión

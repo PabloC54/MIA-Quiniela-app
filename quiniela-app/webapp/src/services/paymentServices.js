@@ -7,7 +7,7 @@ export async function getMembership(user) {
   })
 
   const res_json = await res.json()
-  return res_json
+  return { membresia: res_json.message }
 }
 
 export async function setMembership(user, type) {
@@ -18,6 +18,7 @@ export async function setMembership(user, type) {
     body: JSON.stringify(obj)
   })
 
+  const changed = res.ok
   const res_json = await res.json()
-  return res_json
+  return { ...res_json, changed }
 }

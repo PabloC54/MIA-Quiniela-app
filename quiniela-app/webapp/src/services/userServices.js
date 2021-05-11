@@ -1,5 +1,5 @@
 import { getUserAPIUrl, registerUserAPIUrl, loginUserAPIUrl, recoverUserAPIUrl, updateUserAPIUrl } from 'services/ApiInfo'
-import { toDate } from 'util/util'
+import { toDate } from 'services/util'
 
 export async function getUser(user) {
   const res = await fetch(getUserAPIUrl + user, {
@@ -12,9 +12,9 @@ export async function getUser(user) {
 }
 
 export async function registerUser(body) {
-  let fecha_registro = toDate()
   let fecha_nacimiento = toDate(body.fecha_nacimiento)
-  let obj = { ...body, fecha_registro, fecha_nacimiento }
+  let fecha_registro = toDate()
+  let obj = { ...body, fecha_nacimiento, fecha_registro }
 
   const res = await fetch(registerUserAPIUrl, {
     method: 'POST',

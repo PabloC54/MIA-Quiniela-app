@@ -1,4 +1,5 @@
-import { paymentAPIUrl } from 'services/ApiInfo'
+import { paymentAPIUrl, eventAPIUrl } from 'services/ApiInfo'
+import { toDateTime } from './util'
 
 export async function getActiveEvents() {
   const res = await fetch(paymentAPIUrl, {
@@ -8,6 +9,21 @@ export async function getActiveEvents() {
 
   const res_json = await res.json()
   return res_json
+}
+
+export async function newEvent(body) {
+  const fecha = toDateTime(body.fecha)
+
+  const res = await fetch(paymentAPIUrl, {
+    method: 'POST',
+    mode: 'cors',
+    body: JSON.stringify({ ...body, fecha })
+  })
+
+  const created = res.ok
+
+  const res_json = await res.json()
+  return { ...res_json, created }
 }
 
 export async function getUserPredictions(user) {
