@@ -61,6 +61,7 @@ CREATE TABLE evento (
     id_jornada NUMBER NOT NULL,
     id_equipo_local NUMBER NOT NULL,
     id_equipo_visitante NUMBER NOT NULL,
+    id_deporte NUMBER NOT NULL,
     puntuacion_local NUMBER,
     puntuacion_visitante NUMBER,
     fecha DATE,
@@ -186,6 +187,11 @@ ALTER TABLE
     evento
 ADD
     CONSTRAINT evento_jornada_fk FOREIGN KEY (id_jornada) REFERENCES jornada (id);
+
+ALTER TABLE
+    evento
+ADD
+    CONSTRAINT evento_deporte_fk FOREIGN KEY (id_deporte) REFERENCES deporte (id);
 
 ALTER TABLE
     jornada

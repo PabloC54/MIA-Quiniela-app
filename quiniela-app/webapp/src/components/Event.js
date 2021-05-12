@@ -9,7 +9,7 @@ const small = 12,
   medium = 6,
   large = 4
 
-export default function Event({ id, user, equipoLocal, equipoVisitante, deporte, predictionSent = true, suscribed }) {
+export default function Event({ id, user, equipo_local, equipo_visitante, deporte, predictionSent = true, suscribed }) {
   const [enabled, setEnabled] = useState(false)
   const [sent, setSent] = useState(predictionSent)
   const [puntosLocal, setPuntosLocal] = useState(0)
@@ -47,7 +47,7 @@ export default function Event({ id, user, equipoLocal, equipoVisitante, deporte,
       <Col className={`event m-${deporte}`} xs={small} sm={small} md={medium} lg={large} xl={large}>
         <Row>
           <Col className='body' xs={12} sm={12} md={12} lg={12} xl={12}>
-            <h4 className='e-name'>{`${equipoLocal}${(<sub>local</sub>)} VS. ${equipoVisitante}${(<sub>visitante</sub>)}`}</h4>
+            <h4 className='e-name'>{`${equipo_local}${(<sub>local</sub>)} VS. ${equipo_visitante}${(<sub>visitante</sub>)}`}</h4>
             <p className='e-sport'>{deporte}</p>
           </Col>
         </Row>
@@ -58,11 +58,11 @@ export default function Event({ id, user, equipoLocal, equipoVisitante, deporte,
             <Form>
               <p>Predice este evento</p>
               <Form.Group controlId='puntosLocal'>
-                <Form.Label>Puntos de {equipoLocal}</Form.Label>
+                <Form.Label>Puntos de {equipo_local}</Form.Label>
                 <Form.Control type='number' placeholder='0' value={puntosLocal} onChange={setPuntosLocal} />
               </Form.Group>
               <Form.Group controlId='puntosLocal'>
-                <Form.Label>Puntos de {equipoLocal}</Form.Label>
+                <Form.Label>Puntos de {equipo_local}</Form.Label>
                 <Form.Control type='number' placeholder='0' value={puntosVisitante} onChange={setPuntosVisitante} />
               </Form.Group>
               <Button type='submit' variant='primary' onClick={handleSendPrediction}>
@@ -71,7 +71,7 @@ export default function Event({ id, user, equipoLocal, equipoVisitante, deporte,
             </Form>
           ) : sent ? (
             <h3>
-              Predicción realizada: {equipoLocal} {puntosLocal} - {puntosVisitante} {equipoVisitante}
+              Predicción realizada: {equipo_local} {puntosLocal} - {puntosVisitante} {equipo_visitante}
             </h3>
           ) : (
             <Button onClick={handlePredict}>Click aquí para realizar una predicción de este evento</Button>

@@ -70,7 +70,6 @@ const logged_links = [
 
 export default function Header() {
   const { logged, user, doLogout } = useContext(UserContext)
-  const [, setLocation] = useLocation()
 
   const handleLinks = (array) =>
     array.map((link) => {
@@ -81,10 +80,8 @@ export default function Header() {
       )
     })
 
-  const handleLogout = () => {
-    doLogout()
-    setLocation('/')
-  }
+  const handleLogout = () =>  doLogout()
+  
 
   return (
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>

@@ -6,21 +6,21 @@ import (
 )
 
 type usuario struct {
-	Id               int            `json:"id"`
-	Username         string         `json:"username"`
-	Correo           string         `json:"correo"`
-	Nombre           string         `json:"nombre"`
-	Apellido         string         `json:"apellido"`
-	Contraseña       string         `json:"contraseña"`
-	Saldo            string         `json:"saldo"`
-	Fecha_nacimiento string         `json:"fecha_nacimiento"`
-	Fecha_registro   string         `json:"fecha_registro"`
-	Foto             sql.NullString `json:"foto"`
+	Id               int    `json:"id"`
+	Username         string `json:"username"`
+	Correo           string `json:"correo"`
+	Nombre           string `json:"nombre"`
+	Apellido         string `json:"apellido"`
+	Contraseña       string `json:"contraseña"`
+	Saldo            string `json:"saldo"`
+	Fecha_nacimiento string `json:"fecha_nacimiento"`
+	Fecha_registro   string `json:"fecha_registro"`
+	Foto             string `json:"foto"`
 }
 
 func getAllUsers(db *sql.DB, offset, limit int) ([]usuario, error) {
 	rows, err := db.Query(
-		"SELECT username, correo, nombre, apellido, contraseña, saldo, fecha_nacimiento, fecha_registro, foto FROM usuario")
+		"SELECT username, correo, nombre, apellido, contraseña, saldo, fecha_nacimiento, fecha_registro FROM usuario")
 	if err != nil {
 		return nil, err
 	}
@@ -30,7 +30,7 @@ func getAllUsers(db *sql.DB, offset, limit int) ([]usuario, error) {
 
 	for rows.Next() {
 		var u usuario
-		if err := rows.Scan(&u.Username, &u.Correo, &u.Nombre, &u.Apellido, &u.Contraseña, &u.Saldo, &u.Fecha_nacimiento, &u.Fecha_registro, &u.Foto); err != nil {
+		if err := rows.Scan(&u.Username, &u.Correo, &u.Nombre, &u.Apellido, &u.Contraseña, &u.Saldo, &u.Fecha_nacimiento, &u.Fecha_registro); err != nil {
 			return nil, err
 		}
 		usuarios = append(usuarios, u)
@@ -40,8 +40,8 @@ func getAllUsers(db *sql.DB, offset, limit int) ([]usuario, error) {
 }
 
 func (u *usuario) getUser(db *sql.DB) error {
-	query := fmt.Sprintf(`select correo, nombre, apellido, fecha_nacimiento, fecha_registro, foto, saldo from usuario where username='%s'`, u.Username)
-	err := db.QueryRow(query).Scan(&u.Correo, &u.Nombre, &u.Apellido, &u.Fecha_nacimiento, &u.Fecha_registro, &u.Foto, &u.Saldo)
+	query := fmt.Sprintf(`select correo, nombre, apellido, fecha_nacimiento, fecha_registro, saldo from usuario where username='%s'`, u.Username)
+	err := db.QueryRow(query).Scan(&u.Correo, &u.Nombre, &u.Apellido, &u.Fecha_nacimiento, &u.Fecha_registro, &u.Saldo)
 	return err
 }
 
@@ -53,6 +53,9 @@ func (u *usuario) createUser(db *sql.DB) error {
 
 func (u *usuario) loginUser(db *sql.DB) error {
 	query := fmt.Sprintf(`SELECT id FROM usuario WHERE username='%s' AND contraseña='%s'`, u.Username, u.Contraseña)
+
+	//query := fmt.Sprintf(`call login('%s', '%s')`, u.Username, u.Contraseña)
+
 	return db.QueryRow(query).Scan(&u.Id)
 }
 

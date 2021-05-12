@@ -113,6 +113,7 @@ func (a *App) loginUser(w http.ResponseWriter, r *http.Request) {
 	var u usuario
 	decoder := json.NewDecoder(r.Body)
 	if err := decoder.Decode(&u); err != nil {
+		fmt.Println(err)
 		respondWithMessage(w, http.StatusBadRequest, "Solicitud no válida")
 		return
 	}
@@ -271,19 +272,87 @@ func (a *App) sportsHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
-func (a *App) getActualSeason(w http.ResponseWriter, r *http.Request) {
+func (a *App) getAllEvents(w http.ResponseWriter, r *http.Request) {
 
-	deportes, err := getAllSeasons(a.DB)
-	if err != nil {
+	events, err := getAllEvents(a.DB)
+	if err != nil && err != sql.ErrNoRows {
 		respondWithMessage(w, http.StatusInternalServerError, err.Error())
 		return
 	}
 
-	respondWithJSON(w, http.StatusOK, deportes)
+	respondWithJSON(w, http.StatusOK, events)
+}
+
+func (a *App) eventHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "POST" {
+		var e event
+		decoder := json.NewDecoder(r.Body)
+		if err := decoder.Decode(&e); err != nil {
+			respondWithMessage(w, http.StatusBadRequest, "Solicitud no válida")
+			return
+		}
+		defer r.Body.Close()
+
+		if err := e.createEvent(a.DB); err != nil && err != sql.ErrNoRows {
+			respondWithMessage(w, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		respondWithMessage(w, http.StatusCreated, e.Id)
+	} else if r.Method == "PUT" {
+		id := mux.Vars(r)["id"]
+		e := event{Id: id}
+
+		decoder := json.NewDecoder(r.Body)
+		if err := decoder.Decode(&e); err != nil {
+			respondWithMessage(w, http.StatusBadRequest, "Solicitud no válida")
+			return
+		}
+		defer r.Body.Close()
+
+		if err := e.updateEvent(a.DB); err != nil && err != sql.ErrNoRows {
+			respondWithMessage(w, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		respondWithMessage(w, http.StatusCreated, "Evento actualizado")
+	} else {
+
+		id := mux.Vars(r)["id"]
+		d := deporte{Id: id}
+
+		if err := d.deleteSport(a.DB); err != nil && err != sql.ErrNoRows {
+			respondWithMessage(w, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		respondWithMessage(w, http.StatusOK, "Deporte eliminado")
+	}
+}
+
+func (a *App) getAllSeasons(w http.ResponseWriter, r *http.Request) {
+
+	//seasons, err := getAllSeasons(a.DB)
+	//if err != nil {
+	//	respondWithMessage(w, http.StatusInternalServerError, err.Error())
+	//	return
+	//}
+
+	//respondWithJSON(w, http.StatusOK, seasons)
 }
 
 func (a *App) seasonHandler(w http.ResponseWriter, r *http.Request) {
-	if r.Method == "POST" {
+	if r.Method == "GET" {
+
+		var s season
+
+		if err := s.getActualSeason(a.DB); err != nil {
+			respondWithMessage(w, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		respondWithJSON(w, http.StatusOK, s)
+	} else if r.Method == "POST" {
 
 		var d deporte
 		decoder := json.NewDecoder(r.Body)
@@ -331,21 +400,74 @@ func (a *App) seasonHandler(w http.ResponseWriter, r *http.Request) {
 	}
 }
 
+func (a *App) periodHandler(w http.ResponseWriter, r *http.Request) {
+	if r.Method == "GET" {
+		var p period
+
+		if err := p.getActualPeriod(a.DB); err != nil {
+			respondWithMessage(w, http.StatusInternalServerError, err.Error())
+			return
+		}
+
+		respondWithJSON(w, http.StatusOK, p)
+	} else if r.Method == "POST" {
+
+		//	var d deporte
+		//	decoder := json.NewDecoder(r.Body)
+		//	if err := decoder.Decode(&d); err != nil {
+		//		respondWithMessage(w, http.StatusBadRequest, "Solicitud no válida")
+		//		return
+		//	}
+		//	defer r.Body.Close()
+
+		//	if err := d.createSport(a.DB); err != nil && err != sql.ErrNoRows {
+		//		respondWithMessage(w, http.StatusInternalServerError, err.Error())
+		//		return
+		//	}
+
+		//	respondWithMessage(w, http.StatusCreated, "Deporte creado")
+		//} else if r.Method == "PUT" {
+
+		//	id := mux.Vars(r)["id"]
+		//	d := deporte{Id: id}
+
+		//	decoder := json.NewDecoder(r.Body)
+		//	if err := decoder.Decode(&d); err != nil {
+		//		respondWithMessage(w, http.StatusBadRequest, "Solicitud no válida")
+		//		return
+		//	}
+		//	defer r.Body.Close()
+
+		//	if err := d.updateSport(a.DB); err != nil && err != sql.ErrNoRows {
+		//		respondWithMessage(w, http.StatusInternalServerError, err.Error())
+		//		return
+		//	}
+
+		//	respondWithMessage(w, http.StatusCreated, "Deporte actualizado")
+	}
+}
+
 func (a *App) initializeRoutes() {
 	a.Router.HandleFunc("/api/users", corsHandler(a.getAllUsers))
 	a.Router.HandleFunc("/api/user/{username}", corsHandler(a.getUser))
 	a.Router.HandleFunc("/api/registrar", corsHandler(a.createUser))
 	a.Router.HandleFunc("/api/login", corsHandler(a.loginUser))
 	a.Router.HandleFunc("/api/recuperar", corsHandler(a.recoverUser))
-	//a.Router.HandleFunc("/user/", corsHandler(a.deleteUser))
 
 	a.Router.HandleFunc("/api/membresia", corsHandler(a.membershipHandler))
 
 	a.Router.HandleFunc("/api/sports", corsHandler(a.getAllSports))
 	a.Router.HandleFunc("/api/sport", corsHandler(a.sportsHandler))
 
-	a.Router.HandleFunc("/api/temporadas", corsHandler(a.getAllSeasons))
-	a.Router.HandleFunc("/api/temporada", corsHandler(a.sportsHandler))
+	a.Router.HandleFunc("/api/events", corsHandler(a.getAllEvents))
+	a.Router.HandleFunc("/api/event", corsHandler(a.eventHandler))
+	a.Router.HandleFunc("/api/event/{id}", corsHandler(a.eventHandler))
+
+	//a.Router.HandleFunc("/api/seasons", corsHandler(a.getAllPeriods))
+	a.Router.HandleFunc("/api/period", corsHandler(a.periodHandler))
+
+	a.Router.HandleFunc("/api/seasons", corsHandler(a.getAllSeasons))
+	a.Router.HandleFunc("/api/season", corsHandler(a.seasonHandler))
 }
 
 func corsHandler(handler func(w http.ResponseWriter, r *http.Request)) func(w http.ResponseWriter, r *http.Request) {

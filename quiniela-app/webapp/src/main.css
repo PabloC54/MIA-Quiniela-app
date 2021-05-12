@@ -92,6 +92,16 @@ div.container {
   }
 }
 
+
+.event {
+  color: black;
+  padding: 20px 40px;
+  margin: 5px 0;
+  background: linear-gradient(-45deg, #324a8a, #2f537c, #467477, #6f999e);
+  background-size: 400% 400%;
+  animation: gradient 100s ease infinite;
+}
+
 .footer {
   width: 100vw;
   line-height: 50px;
@@ -107,6 +117,7 @@ div.container {
 div.custom-prompt {
   background-color: #3535359a;
 }
+
 
 div.custom-prompt div {
   background-color: #1b1b1be1;

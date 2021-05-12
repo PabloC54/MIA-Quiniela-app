@@ -22,9 +22,9 @@ CREATE TABLE massive (
 
 -- Carga hacia el modelo
 
-INSERT INTO usuario(nombre, apellido, contraseña, username, id, correo, fecha_nacimiento, fecha_registro, foto )
+INSERT INTO usuario(nombre, apellido, contraseña, username, id, correo, fecha_nacimiento, fecha_registro, saldo, foto )
 SELECT DISTINCT nombre, apellido, password, username, null, username, to_date('04/04/1994','dd/mm/yyyy'),
-to_date('04/04/2021','dd/mm/yyyy'), utl_raw.cast_to_raw('') FROM massive;
+to_date('04/04/2021','dd/mm/yyyy'), 0, utl_raw.cast_to_raw('') FROM massive;
 
 -- Deporte
 
@@ -70,12 +70,13 @@ GROUP BY temporada, jornada) s ON s.temporada = t.nombre AND s.jornada = m.jorna
 
 -- Evento
 
-INSERT INTO evento(puntuacion_local, puntuacion_visitante, fecha, id, id_jornada, id_equipo_local, id_equipo_visitante, estado)
-SELECT DISTINCT resultado_local, resultado_visitante, fecha, null, j.id, el.id, ev.id, 'finalizado' FROM massive m
+INSERT INTO evento(puntuacion_local, puntuacion_visitante, fecha, id, id_jornada, id_equipo_local, id_equipo_visitante, id_deporte, estado)
+SELECT DISTINCT resultado_local, resultado_visitante, fecha, null, j.id, el.id, ev.id, d.id, 'finalizado' FROM massive m
 INNER JOIN temporada t ON t.nombre = m.temporada
 INNER JOIN jornada j ON j.nombre = m.jornada AND j.id_temporada = t.id
 INNER JOIN equipo el ON el.nombre = m.local
-INNER JOIN equipo ev ON ev.nombre = m.visitante;
+INNER JOIN equipo ev ON ev.nombre = m.visitante
+INNER JOIN deporte d ON d.nombre = m.deporte;
 
 -- Prediccion
 

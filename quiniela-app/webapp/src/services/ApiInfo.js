@@ -9,16 +9,17 @@ const updateUserAPIUrl = APIUrl + '/actualizar'
 
 const paymentAPIUrl = APIUrl + '/membresia'
 
+const getEventsAPIUrl = APIUrl + '/events'
 const eventAPIUrl = APIUrl + '/event'
 
 const getSportsAPIUrl = APIUrl + '/deportes'
 const SportAPIUrl = APIUrl + '/deporte'
 
-const getSeasonsAPIUrl = APIUrl + '/temporadas'
-const seasonAPIUrl = APIUrl + '/temporada'
+const getPeriodsAPIUrl = APIUrl + '/periods'
+const periodAPIUrl = APIUrl + '/period'
 
-const getPeriodsAPIUrl = APIUrl + '/jornadas'
-const periodAPIUrl = APIUrl + '/jornada'
+const getSeasonsAPIUrl = APIUrl + '/seasons'
+const seasonAPIUrl = APIUrl + '/season'
 
 export {
   getUserAPIUrl,
@@ -27,11 +28,12 @@ export {
   recoverUserAPIUrl,
   updateUserAPIUrl,
   paymentAPIUrl,
+  getEventsAPIUrl,
   eventAPIUrl,
   getSportsAPIUrl,
   SportAPIUrl,
-  getSeasonsAPIUrl,
-  seasonAPIUrl,
   getPeriodsAPIUrl,
-  periodAPIUrl
+  periodAPIUrl,
+  getSeasonsAPIUrl,
+  seasonAPIUrl
 }

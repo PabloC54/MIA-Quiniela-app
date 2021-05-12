@@ -26,9 +26,21 @@ const toCSV = (content) => {
   return str
 }
 
-try {
-  const doc = yaml.load(fs.readFileSync('/home/pablo/Documentos/src/Universidad/-MIA-Proyecto-2/test/quinielas.yaml', 'utf8'))
-  fs.writeFileSync('/home/pablo/Documentos/src/Universidad/-MIA-Proyecto-2/test/res.csv', toCSV(doc))
-} catch (e) {
-  console.log(e)
+//try {
+//  const doc = yaml.load(fs.readFileSync('/home/pablo/Documentos/src/Universidad/-MIA-Proyecto-2/test/quinielas.yaml', 'utf8'))
+//  fs.writeFileSync('/home/pablo/Documentos/src/Universidad/-MIA-Proyecto-2/test/res.csv', toCSV(doc))
+//} catch (e) {
+//  console.log(e)
+//}
+
+
+export function toDateTime(date_string) {
+  let date = date_string ? new Date(date_string) : new Date()
+  let dd = String(date.getDate()).padStart(2, '0')
+  let mm = String(date.getMonth() + 1).padStart(2, '0')
+  let yyyy = date.getFullYear()
+  let hh = date.getHours()
+  let mi = date.getMinutes()
+
+  return `${dd}/${mm}/${yyyy} ${hh}:${mi}`
 }

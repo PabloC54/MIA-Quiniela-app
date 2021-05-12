@@ -2,6 +2,7 @@ package main
 
 import (
 	"database/sql"
+	"fmt"
 )
 
 type season struct {
@@ -11,33 +12,48 @@ type season struct {
 }
 
 type position struct {
-	Id             string `json:"id"`
 	Username       string `json:"username"`
-	Puntos_totales string `json:"puntos_totales"`
+	Puntos_ultimos string `json:"puntos_ultimos"`
+	P10            string `json:"p10"`
+	P5             string `json:"p5"`
+	P3             string `json:"p3"`
+	P0             string `json:"p0"`
+	Incremento     string `json:"incremento"`
 }
 
-func getActualSeason(db *sql.DB) (season, error) {
-	var s season
-	rows, err := db.Query(
-		"SELECT id FROM temporada WHERE estado='activo'")
+func (s *season) getActualSeason(db *sql.DB) error {
+	query := "SELECT id, nombre FROM temporada WHERE estado='activo'"
+	if err := db.QueryRow(query).Scan(&s.Id, &s.Nombre); err != nil {
+		return err
+	}
+
+	query = fmt.Sprintf("SELECT id_usuario, puntos_ultimos, p10, p5, p3, p0, incremento FROM estado_usuario WHERE id_temporada=%s", s.Id)
+	rows, err := db.Query(query)
 	if err != nil {
-		return s, err
+		return err
 	}
 
 	defer rows.Close()
 	ps := []position{}
 
 	for rows.Next() {
+		var id_usuario string
 		var p position
-		if err := rows.Scan(&p.Id, &p.Username, &p.Puntos_totales); err != nil {
-			return s, err
+		if err := rows.Scan(&id_usuario, &p.Puntos_ultimos, &p.P10, &p.P5, &p.P3, &p.P0, &p.Incremento); err != nil {
+			return err
 		}
+
+		subquery := fmt.Sprintf("SELECT username FROM usuario WHERE id=%s", id_usuario)
+		if err := db.QueryRow(subquery).Scan(&p.Username); err != nil {
+			return err
+		}
+
 		ps = append(ps, p)
 	}
 
 	s.Posiciones = ps
 
-	return s, nil
+	return nil
 }
 
 //func (d *deporte) getUser(db *sql.DB) error {

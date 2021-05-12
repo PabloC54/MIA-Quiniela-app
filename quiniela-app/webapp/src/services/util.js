@@ -18,6 +18,11 @@ export function toDateTime(date_string) {
   return `${dd}/${mm}/${yyyy} ${hh}:${mi}`
 }
 
+export function pastDate(date_string) {
+  let date = new Date(date_string)
+  return date.setHours(0, 0, 0, 0) - new Date().setHours(0, 0, 0, 0) < 0
+}
+
 export function copyObject(obj) {
   return JSON.parse(JSON.stringify(obj))
 }

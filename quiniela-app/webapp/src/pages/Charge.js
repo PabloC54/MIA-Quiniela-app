@@ -38,7 +38,7 @@ export default function Charge() {
           e.target.value = null
         }}
       />
-      <Button onClick={handleProcess}>Procesar archivo</Button>
+      <Button type='submit' variant='primary' onClick={handleProcess}>Procesar archivo</Button>
     </>
   )
 }
