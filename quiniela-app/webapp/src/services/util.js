@@ -26,3 +26,11 @@ export function pastDate(date_string) {
 export function copyObject(obj) {
   return JSON.parse(JSON.stringify(obj))
 }
+
+export function toTitle(str) {
+  return str.replace(/\w\S*/g, (s) => s.charAt(0).toUpperCase() + s.substr(1).toLowerCase())
+}
+
+export function toOptions(arr) {
+  return arr.map(({ nombre, id }) => ({ value: id || nombre, label: toTitle(nombre) }))
+}

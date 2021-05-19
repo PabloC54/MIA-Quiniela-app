@@ -13,17 +13,16 @@ drop table 	JORNADA	        cascade constraints;
 drop table 	MENSAJE	        cascade constraints;
 drop table 	DEPORTE         cascade constraints;
 
+delete from	PREDICCION	    ;
+delete from	EVENTO	        ;
+delete from	JORNADA	        ;
+delete from	DETALLE_EQUIPO  ;
+delete from	DEPORTE         ;
+delete from	EQUIPO	        ;
+delete from	MENSAJE	        ;
 delete from	CHAT	        ;
 delete from	ESTADO_USUARIO	;
-delete from	EVENTO	        ;
-delete from	MEMBRESIA	    ;
-delete from	PREDICCION	    ;
 delete from	TEMPORADA	    ;
-delete from	USUARIO	        ;
-delete from	EQUIPO	        ;
-delete from	DETALLE_EQUIPO  ;
-delete from	JORNADA	        ;
-delete from	MENSAJE	        ;
-delete from	DEPORTE         ;
+delete from	USUARIO	        WHERE username != 'admin';
 
 COMMIT WORK;

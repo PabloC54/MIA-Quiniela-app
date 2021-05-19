@@ -21,45 +21,11 @@ func (p *period) getActualPeriod(db *sql.DB) error {
 	if err := db.QueryRow(query).Scan(&p.Id, &season_id, &p.Nombre, &p.Fecha_inicio, &p.Fecha_final, &p.Estado); err != nil {
 		return err
 	}
-	var no_membership_id string
-	query = `SELECT id FROM membresia WHERE nombre='ninguna'`
-	_ = db.QueryRow(query).Scan(&p.Id, &season_id, &p.Nombre, &p.Fecha_inicio, &p.Fecha_final, &p.Estado)
 
-	query = fmt.Sprintf(`SELECT count(*) FROM estado_usuario WHERE id_temporada=%s AND id_membresia!=%s`, season_id, no_membership_id)
+	query = fmt.Sprintf(`SELECT count(*) FROM estado_usuario WHERE id_temporada=%s`, season_id)
 	_ = db.QueryRow(query).Scan(&p.Clientes)
 
 	query = fmt.Sprintf(`SELECT nombre FROM temporada WHERE id=%s`, season_id)
 	err := db.QueryRow(query).Scan(&p.Temporada)
 	return err
 }
-
-//func (p *period) createSport(db *sql.DB) error {
-//	query := fmt.Sprintf(`INSERT INTO period VALUES(null, '%p', '%p', '%p')`, p.Nombre, p.Color, p.Imagen)
-//	err := db.QueryRow(query).Scan()
-//	return err
-//}
-
-//func (p *period) updateSport(db *sql.DB) error {
-//	query := `UPDATE period SET `
-//	if p.Nombre != "" {
-//		query = fmt.Sprintf(query+` nombre='%p',`, p.Nombre)
-//	}
-//	if p.Color != "" {
-//		query = fmt.Sprintf(query+` color='%p',`, p.Color)
-//	}
-//	if p.Imagen != "" {
-//		query = fmt.Sprintf(query+` imagen='%p',`, p.Imagen)
-//	}
-//	query = query[:len(query)-1]
-
-//	query = fmt.Sprintf(query+` WHERE id=%p`, p.Id)
-
-//	err := db.QueryRow(query).Scan()
-//	return err
-//}
-
-//func (p *period) deleteSport(db *sql.DB) error {
-//	query := fmt.Sprintf(`DELETE FROM period WHERE id=%p`, p.Id)
-//	err := db.QueryRow(query).Scan()
-//	return err
-//}

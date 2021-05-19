@@ -1,4 +1,4 @@
-import { Button } from 'bootstrap'
+import { Button } from 'react-bootstrap'
 import { useState, useContext, useRef } from 'react'
 
 import NotificationContext from 'context/NotificationContext'
@@ -21,7 +21,8 @@ export default function Charge() {
     setFileContent(result)
   }
 
-  const handleProcess = () => {
+  const handleProcess = (ev) => {
+    ev.preventDefault()
     if (!fileContent) return setNotification('Error al procesar el archivo', 'No se cargó ningún archivo YAML', 'danger')
   }
 
@@ -29,16 +30,22 @@ export default function Charge() {
     <>
       <h3>Carga masiva de datos</h3>
       <p>Carga un archivo YAML para insertar los datos a la base de datos</p>
-      <input
-        type='file'
-        accept='.yaml'
-        ref={inputFile}
-        onChange={(e) => handleFileUpload(e.target.files[0])}
-        onClick={(e) => {
-          e.target.value = null
-        }}
-      />
-      <Button type='submit' variant='primary' onClick={handleProcess}>Procesar archivo</Button>
+      <div className='block'>
+        <input
+          type='file'
+          accept='.yaml'
+          ref={inputFile}
+          onChange={(e) => handleFileUpload(e.target.files[0])}
+          onClick={(e) => {
+            e.target.value = null
+          }}
+        />
+      </div>
+      <div className='block'>
+        <Button type='submit' variant='primary' onClick={handleProcess}>
+          Procesar archivo
+        </Button>
+      </div>
     </>
   )
 }

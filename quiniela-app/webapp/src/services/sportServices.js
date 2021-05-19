@@ -7,7 +7,7 @@ export async function getSports() {
   })
 
   const res_json = await res.json()
-  return res_json
+  return { deportes: res_json }
 }
 
 export async function newSport(body) {

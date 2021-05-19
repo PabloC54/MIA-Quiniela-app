@@ -21,8 +21,9 @@ export default function Sports() {
 
   useEffect(function () {
     getSports().then((res) => {
-      const { sportsList } = res
-      setSportsList(sportsList)
+      const { deportes } = res
+      console.log(res)
+      setSportsList(deportes)
     })
   }, [])
 

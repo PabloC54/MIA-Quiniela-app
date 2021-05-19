@@ -38,18 +38,18 @@ export default function Payment() {
       const { membresia } = res
       setActiveMembership(membresia)
     })
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   const handleContractMembership = (type) => {
     setMembership(user, type).then((res) => {
-      const { contratado, message } = res
+      const { changed, message } = res
 
-      if (!contratado) {
+      if (!changed) {
         return setNotification(`Error al contratar la membresía`, 'No se pudo contratar la membresía\n' + message, 'error')
       }
 
-      setActiveMembership(`Suscripción ${type}`)
+      setActiveMembership(`Suscripción ${type} (pendiente)`)
       setNotification(
         `Suscripción ${active_membership === 'Ninguna' ? 'comprada' : 'actualizada'}`,
         'Suscripción adquirida con éxito\nLos cambios se verán reflejados en la próxima temporada',

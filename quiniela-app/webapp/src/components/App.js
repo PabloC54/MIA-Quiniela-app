@@ -56,6 +56,7 @@ export default function App() {
                     <Route component={Prizes} path='/recompensas' />
                     <Route component={Reports} path='/reportes' />
                   </NestedRoutes>
+                  <Redirect from='*' to='/admin' />
                 </>
               ) : (
                 <>

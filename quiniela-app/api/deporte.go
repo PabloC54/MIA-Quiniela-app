@@ -7,14 +7,14 @@ import (
 
 type deporte struct {
 	Id     string `json:"id"`
-	Nombre string `json:"username"`
+	Nombre string `json:"nombre"`
 	Color  string `json:"color"`
 	Imagen string `json:"imagen"`
 }
 
 func getAllSports(db *sql.DB) ([]deporte, error) {
 	rows, err := db.Query(
-		"SELECT id, nombre, color, imagen FROM deporte")
+		"SELECT id, nombre, color FROM deporte")
 	if err != nil {
 		return nil, err
 	}
@@ -24,7 +24,7 @@ func getAllSports(db *sql.DB) ([]deporte, error) {
 
 	for rows.Next() {
 		var d deporte
-		if err := rows.Scan(&d.Id, &d.Nombre, &d.Color, &d.Imagen); err != nil {
+		if err := rows.Scan(&d.Id, &d.Nombre, &d.Color); err != nil {
 			return nil, err
 		}
 		deportes = append(deportes, d)
@@ -33,20 +33,14 @@ func getAllSports(db *sql.DB) ([]deporte, error) {
 	return deportes, nil
 }
 
-//func (d *deporte) getUser(db *sql.DB) error {
-//	query := fmt.Sprintf(`select correo, nombre, apellido, fecha_nacimiento, fecha_registro, foto, saldo from deporte where username='%s'`, d.Username)
-//	err := db.QueryRow(query).Scan(&d.Correo, &d.Nombre, &d.Apellido, &d.Fecha_nacimiento, &d.Fecha_registro, &d.Foto, &d.Saldo)
-//	return err
-//}
-
 func (d *deporte) createSport(db *sql.DB) error {
-	query := fmt.Sprintf(`INSERT INTO deporte VALUES(null, '%s', '%s', '%s')`, d.Nombre, d.Color, d.Imagen)
+	query := fmt.Sprintf(`INSERT INTO deporte VALUES(null, '%s', '%s', utl_raw.cast_to_raw('%s'))`, d.Nombre, d.Color, d.Imagen)
 	err := db.QueryRow(query).Scan()
 	return err
 }
 
 func (d *deporte) updateSport(db *sql.DB) error {
-	query := `UPDATE deporte SET `
+	query := `UPDATE deporte SET`
 	if d.Nombre != "" {
 		query = fmt.Sprintf(query+` nombre='%s',`, d.Nombre)
 	}
@@ -58,7 +52,7 @@ func (d *deporte) updateSport(db *sql.DB) error {
 	}
 	query = query[:len(query)-1]
 
-	query = fmt.Sprintf(query+` WHERE id=%s`, d.Id)
+	query = fmt.Sprintf(query+`WHERE id=%s`, d.Id)
 
 	err := db.QueryRow(query).Scan()
 	return err

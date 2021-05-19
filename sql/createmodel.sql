@@ -234,6 +234,9 @@ ADD
     CONSTRAINT estado_usuario_usuario_fk FOREIGN KEY (id_usuario) REFERENCES usuario (id);
 
 -- INSERTS
+
+SELECT * FROM estado_usuario WHERE id_temporada = (SELECT id FROM temporada WHERE estado = 'activo');
+
 INSERT INTO
     usuario
 VALUES

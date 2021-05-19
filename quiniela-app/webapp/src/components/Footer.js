@@ -1,12 +1,14 @@
+import { Col, Row } from 'react-bootstrap'
+
 export default function Footer() {
   return (
     <>
-      <div className='push'></div>
-      <div className='row footer'>
-        <div className='credits col-xs-12 col-sm-12 col-md-12 col-lg-12 col-xl-12'>
-          <div className='footer-el'>⚛ Pablo Cabrera · USAC</div>
-        </div>
-      </div>
+      <div className='push' />
+      <Row className='footer'>
+        <Col xs={12} sm={12} md={12} lg={12} xl={12} className='credits'>
+          ⚛ Pablo Cabrera · USAC
+        </Col>
+      </Row>
     </>
   )
 }

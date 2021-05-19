@@ -1,4 +1,4 @@
-import { paymentAPIUrl, eventAPIUrl, getEventsAPIUrl } from 'services/ApiInfo'
+import { eventAPIUrl, getEventsAPIUrl } from 'services/ApiInfo'
 import { toDateTime } from './util'
 
 export async function getActiveEvents() {
@@ -12,11 +12,11 @@ export async function getActiveEvents() {
 }
 
 export async function newEvent(body) {
-  body.fecha = toDateTime(body.fecha)
+  const fecha = toDateTime(body.fecha)
   const res = await fetch(eventAPIUrl, {
     method: 'POST',
     mode: 'cors',
-    body: JSON.stringify(body)
+    body: JSON.stringify({ ...body, fecha })
   })
 
   const created = res.ok
@@ -26,11 +26,11 @@ export async function newEvent(body) {
 }
 
 export async function updateEvent(body, id) {
-  if (body.fecha) body.fecha = toDateTime(body.fecha)
+  const fecha = toDateTime(body.fecha)
   const res = await fetch(eventAPIUrl + '/' + id, {
     method: 'PUT',
     mode: 'cors',
-    body: JSON.stringify(body)
+    body: JSON.stringify({ ...body, fecha })
   })
 
   const updated = res.ok
@@ -39,34 +39,14 @@ export async function updateEvent(body, id) {
   return { ...res_json, updated }
 }
 
-export async function getUserPredictions(user) {
-  const res = await fetch(paymentAPIUrl + user, {
-    method: 'GET',
+export async function deleteEvent(id) {
+  const res = await fetch(eventAPIUrl + '/' + id, {
+    method: 'DELETE',
     mode: 'cors'
   })
 
-  const res_json = await res.json()
-  return res_json
-}
-
-export async function getPrediction(user) {
-  const res = await fetch(paymentAPIUrl + user, {
-    method: 'GET',
-    mode: 'cors'
-  })
+  const deleted = res.ok
 
   const res_json = await res.json()
-  return res_json
-}
-
-export async function sendPrediction(user, type) {
-  let obj = { username: user, membresia: type }
-  const res = await fetch(paymentAPIUrl, {
-    method: 'POST',
-    mode: 'cors',
-    body: JSON.stringify(obj)
-  })
-
-  const res_json = await res.json()
-  return res_json
+  return { ...res_json, deleted }
 }

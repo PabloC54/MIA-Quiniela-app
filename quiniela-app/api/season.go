@@ -3,6 +3,7 @@ package main
 import (
 	"database/sql"
 	"fmt"
+	"strconv"
 )
 
 type season struct {
@@ -12,13 +13,16 @@ type season struct {
 }
 
 type position struct {
-	Username       string `json:"username"`
-	Puntos_ultimos string `json:"puntos_ultimos"`
-	P10            string `json:"p10"`
-	P5             string `json:"p5"`
-	P3             string `json:"p3"`
-	P0             string `json:"p0"`
-	Incremento     string `json:"incremento"`
+	Posicion   string `json:"posicion"`
+	Username   string `json:"username"`
+	Nombre     string `json:"nombre"`
+	Apellido   string `json:"apellido"`
+	Tier       string `json:"tier"`
+	P10        string `json:"p10"`
+	P5         string `json:"p5"`
+	P3         string `json:"p3"`
+	P0         string `json:"p0"`
+	Incremento string `json:"incremento"`
 }
 
 func (s *season) getActualSeason(db *sql.DB) error {
@@ -26,8 +30,14 @@ func (s *season) getActualSeason(db *sql.DB) error {
 	if err := db.QueryRow(query).Scan(&s.Id, &s.Nombre); err != nil {
 		return err
 	}
+	num, _ := strconv.Atoi(s.Id)
+	past_season_id := strconv.Itoa(num - 1)
 
-	query = fmt.Sprintf("SELECT id_usuario, puntos_ultimos, p10, p5, p3, p0, incremento FROM estado_usuario WHERE id_temporada=%s", s.Id)
+	var past_season_exists string
+	query = fmt.Sprintf("SELECT id, nombre FROM temporada WHERE id=%s", past_season_id)
+	_ = db.QueryRow(query).Scan(past_season_exists)
+
+	query = fmt.Sprintf("SELECT ROW_NUMBER() OVER(ORDER BY (10 * cast(p10 as number) + 5 * cast(p5 as number) + 3 * cast(p3 as number))) posicion, id_usuario, id_membresia, p10, p5, p3, p0 FROM estado_usuario WHERE id_temporada=%s", s.Id)
 	rows, err := db.Query(query)
 	if err != nil {
 		return err
@@ -37,15 +47,31 @@ func (s *season) getActualSeason(db *sql.DB) error {
 	ps := []position{}
 
 	for rows.Next() {
-		var id_usuario string
+		var id_usuario, id_membresia string
 		var p position
-		if err := rows.Scan(&id_usuario, &p.Puntos_ultimos, &p.P10, &p.P5, &p.P3, &p.P0, &p.Incremento); err != nil {
+		if err := rows.Scan(&p.Posicion, &id_usuario, &id_membresia, &p.P10, &p.P5, &p.P3, &p.P0); err != nil {
 			return err
 		}
 
-		subquery := fmt.Sprintf("SELECT username FROM usuario WHERE id=%s", id_usuario)
-		if err := db.QueryRow(subquery).Scan(&p.Username); err != nil {
+		subquery := fmt.Sprintf("SELECT username, nombre, apellido FROM usuario WHERE id=%s", id_usuario)
+		if err := db.QueryRow(subquery).Scan(&p.Username, &p.Nombre, &p.Apellido); err != nil {
 			return err
+		}
+
+		subquery = fmt.Sprintf("SELECT nombre FROM membresia WHERE id=%s", id_membresia)
+		if err := db.QueryRow(subquery).Scan(&p.Tier); err != nil {
+			return err
+		}
+
+		if past_season_exists != "" {
+			var past_season_position string
+			subquery = fmt.Sprintf("SELECT posicion FROM (SELECT ROW_NUMBER() OVER(ORDER BY (10 * cast(p10 as number) + 5 * cast(p5 as number) + 3 * cast(p3 as number))) posicion, id_usuario FROM estado_usuario WHERE id_temporada=%s) WHERE id_usuario=%s", past_season_id, id_usuario)
+			if err := db.QueryRow(subquery).Scan(&past_season_position); err != nil {
+				return err
+			}
+			num1, _ := strconv.Atoi(p.Posicion)
+			num2, _ := strconv.Atoi(past_season_position)
+			p.Incremento = strconv.Itoa(num2 - num1)
 		}
 
 		ps = append(ps, p)

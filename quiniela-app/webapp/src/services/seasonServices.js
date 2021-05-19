@@ -1,7 +1,7 @@
-import { getSeasonsAPIUrl, seasonAPIUrl } from 'services/ApiInfo'
+import { seasonAPIUrl } from 'services/ApiInfo'
 
 export async function getSeasonPositions() {
-  const res = await fetch(getSeasonsAPIUrl, {
+  const res = await fetch(seasonAPIUrl, {
     method: 'GET',
     mode: 'cors'
   })

@@ -1,7 +1,7 @@
 import { paymentAPIUrl } from 'services/ApiInfo'
 
 export async function getMembership(user) {
-  const res = await fetch(paymentAPIUrl + user, {
+  const res = await fetch(paymentAPIUrl+ '/' + user, {
     method: 'GET',
     mode: 'cors'
   })
@@ -11,7 +11,7 @@ export async function getMembership(user) {
 }
 
 export async function setMembership(user, type) {
-  let obj = { username: user, membresia: type }
+  let obj = { username: user, siguiente: type }
   const res = await fetch(paymentAPIUrl, {
     method: 'POST',
     mode: 'cors',

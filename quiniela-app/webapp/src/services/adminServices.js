@@ -1,7 +1,7 @@
-import { paymentAPIUrl } from 'services/ApiInfo'
+import { adminAPIUrl } from 'services/ApiInfo'
 
-export async function getActiveInfo() {
-  const res = await fetch(paymentAPIUrl, {
+export async function getAdminInfo() {
+  const res = await fetch(adminAPIUrl, {
     method: 'GET',
     mode: 'cors'
   })

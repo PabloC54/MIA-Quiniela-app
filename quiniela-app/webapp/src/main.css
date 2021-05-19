@@ -18,6 +18,10 @@ nav.navbar.bg-dark,
   font-family: 'Krona One', sans-serif;
 }
 
+div.block {
+  margin: 35px 0;
+}
+
 h1 {
   color: #78e6b8;
   font-family: 'Montserrat', sans-serif;
@@ -92,7 +96,6 @@ div.container {
   }
 }
 
-
 .event {
   color: black;
   padding: 20px 40px;
@@ -102,8 +105,21 @@ div.container {
   animation: gradient 100s ease infinite;
 }
 
+.css-2b097c-container {
+  color: black;
+}
+
+table.table {
+  color: #a5cab2;
+}
+
+tbody tr:hover {
+  color: #8cad97;
+  cursor: pointer;
+}
+
 .footer {
-  width: 100vw;
+  margin: 0;
   line-height: 50px;
   background-color: rgb(56, 59, 73);
   color: white;
@@ -117,7 +133,6 @@ div.container {
 div.custom-prompt {
   background-color: #3535359a;
 }
-
 
 div.custom-prompt div {
   background-color: #1b1b1be1;

@@ -71,7 +71,9 @@ func (e *event) createEvent(db *sql.DB) error {
 	}
 
 	query = fmt.Sprintf(`INSERT INTO evento VALUES(null, %s, %s, %s, %s, 0, 0, TO_DATE('%s', 'dd/mm/yyyy hh24:mi'), 'activo')`, id_jornada, id_local, id_visitante, id_deporte, e.Fecha)
-	err = db.QueryRow(query).Scan()
+	if err = db.QueryRow(query).Scan(); err != nil && err != sql.ErrNoRows {
+		return err
+	}
 
 	query = fmt.Sprintf(`SELECT id FROM evento WHERE id_jornada=%s AND id_equipo_local=%s AND id_equipo_visitante=%s AND id_deporte=%s AND fecha=TO_DATE('%s', 'dd/mm/yyyy hh24:mi')`, id_jornada, id_local, id_visitante, id_deporte, e.Fecha)
 	err = db.QueryRow(query).Scan(&e.Id)
@@ -82,10 +84,15 @@ func (e *event) updateEvent(db *sql.DB) error {
 
 	var query string
 	if e.Fecha == "" {
-		query = fmt.Sprintf(`UPDATE event SET puntuacion_local=%s, puntuacion_visitante=%s, estado='finalizado' WHERE id=%v`, e.Puntuacion_local, e.Puntuacion_visitante, e.Id)
+		query = fmt.Sprintf(`UPDATE evento SET puntuacion_local=%s, puntuacion_visitante=%s, estado='finalizado' WHERE id=%v`, e.Puntuacion_local, e.Puntuacion_visitante, e.Id)
 	} else {
-		query = fmt.Sprintf(`UPDATE event SET fecha=TO_DATE('%s','dd/mm/yyyy hh24:mi') WHERE id=%v`, e.Fecha, e.Id)
+		query = fmt.Sprintf(`UPDATE evento SET fecha=TO_DATE('%s','dd/mm/yyyy hh24:mi') WHERE id=%v`, e.Fecha, e.Id)
 	}
 
+	return db.QueryRow(query).Scan()
+}
+
+func (e *event) deleteEvent(db *sql.DB) error {
+	query := fmt.Sprintf(`DELETE FROM evento WHERE id=%v`, e.Id)
 	return db.QueryRow(query).Scan()
 }

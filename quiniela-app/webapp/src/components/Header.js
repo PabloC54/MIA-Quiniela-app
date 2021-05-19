@@ -1,5 +1,5 @@
 import { useContext } from 'react'
-import { Link, useLocation } from 'wouter'
+import { Link } from 'wouter'
 import { Navbar, Nav, Button } from 'react-bootstrap'
 import UserContext from 'context/UserContext'
 
@@ -80,8 +80,7 @@ export default function Header() {
       )
     })
 
-  const handleLogout = () =>  doLogout()
-  
+  const handleLogout = () => doLogout()
 
   return (
     <Navbar collapseOnSelect expand='lg' bg='dark' variant='dark'>
